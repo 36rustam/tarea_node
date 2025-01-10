@@ -1,0 +1,14 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{{!-- <script src="/js/helpers.js" type="module"></script> --}}
+{{#if esLogin}}<script src="/js/login.js"></script>{{/if}}
+{{#if esProductos}}<script src="/js/format_precio.js" type="module"></script>{{/if}}
+{{#if esCesta}}
+    <script src="/js/cesta.js" type="module"></script>
+    {{!-- <script src="/js/format_precio.js"></script> --}}
+{{/if}}
+
+{{#if esTestAxios}}
+<script src="/js/test_axios.js"></script>
+{{/if}}

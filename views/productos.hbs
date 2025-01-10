@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>productos</h1>
+    {{#if err}}<h3>{{{err}}}</h3>{{/if}}
+    {{#if aviso}}<h3>{{{aviso}}}</h3>{{/if}}
+    
+    <div class="row d-flex flex-row justify-content-center align-items-center">
+        {{#each productos}}
+            <div class="col-xl-3 col-sm-6 m-2 card" >
+                <img src="{{ruta_img}}" class="card-img-top" alt="{{nombre}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{nombre}}</h5>
+                    <p class="card-text card-precio">{{precio}}</p>
+                    {{!-- button --}}
+                    {{#if @root.esUsuario}}
+                        <a href="/compra?id_producto={{id}}" class="btn btn-primary">Comprar</a>
+                    {{else}}
+                        <a href="/login" class="btn btn-primary">Login</a>
+                    {{/if}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+
+
+</div>

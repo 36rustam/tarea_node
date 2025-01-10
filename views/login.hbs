@@ -1,0 +1,16 @@
+<nav>
+  <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
+
+    <button class="nav-link nav-link-login {{#if subReg}}active{{/if}}" id="nav-login-tab" data-bs-toggle="tab" data-bs-target="#nav-registrarse" type="button" role="tab" aria-controls="nav-registrarse" aria-selected="{{#if subReg}}true{{else}}false{{/if}}">Registrarse</button>
+
+    <button class="nav-link nav-link-login {{#if subAut}}active{{/if}}" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-autorizarse" type="button" role="tab" aria-controls="nav-autorizarse" aria-selected="false{{#if subAut}}true{{else}}false{{/if}}">Autorizarse</button>
+
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+
+  <div class="tab-pane fade {{#if subReg}}show active{{/if}}" id="nav-registrarse" role="tabpanel" aria-labelledby="nav-login-tab">{{>login_registrarse}}</div>
+
+  <div class="tab-pane fade {{#if subAut}}show active{{/if}}" id="nav-autorizarse" role="tabpanel" aria-labelledby="nav-autorizarse-tab">{{>login_autorizarse}}</div>
+
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+    <h1>cesta</h1>
+
+    {{#if cesta}}
+
+        {{#each cesta}}
+            <div class="row col-xl-8 col-sm-12 d-flex cesta-unidad mx-auto align-items-center border-bottom border-2 border-dark pb-2 pt-3">
+                <img src="{{{producto.ruta_img}}}" alt="{{{nombre}}}" class="col-2">
+                <div class="col-3">{{{producto.nombre}}}</div>
+
+
+                <div class="col-2 d-flex align-items-center" id="cantidad{{{id}}}">
+                    <span class="btn-mas-menos border border-2 rounded-circle border-danger fs-3 d-flex align-items-center justify-content-center menos" data-but="menos">
+                        <span>
+                            -
+                        </span>
+                    </span>
+                    <span class="cantidad">
+                        {{{cantidad}}}
+                    </span>un.
+                    <span class="btn-mas-menos border border-2 rounded-circle border-success fs-3 d-flex align-items-center justify-content-center" data-but="mas">
+                        <span>
+                            +
+                        </span>
+                    </span>
+                </div>
+                
+                <div class="col-2" id="precio{{{id}}}">por:<span class="card-precio">{{{producto.precio}}}</span></div>
+                <div class="col-2">total:<span class="sub-total card-precio" id="sub_total_{{id}}"></span></div>
+            </div>
+        {{/each}}
+
+        <div class="text-end col-xl-6 col-sm-11 mx-auto">
+            total:<span class="total-cesta card-precio"></span>
+        </div>
+
+    {{else}}
+        <p>esta vacia</p>
+    {{/if}}
+</div>
