@@ -1,4 +1,4 @@
-import { formatPrecio } from "./helpers.js";
+import { formatPrecio } from "./helpers/helpers.js";
 console.log('format_precio.js dice hola');
 
 // Formatamos todo lo que esta relacianado con el dinero;

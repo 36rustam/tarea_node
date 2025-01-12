@@ -14,18 +14,18 @@ function formatPrecio(item) {
 // Botones que cambien la cantidad (+/- 1);
 function masCan(element, eventItem) {
     // console.log(eventItem.target.parentElement.children[0].classList);
-    const classLi=eventItem.target.parentElement.children[0].classList;
-    classLi.remove('cantidadZero')
-    element.parentElement.children[1].innerHTML = parseInt(element.parentElement.children[1].innerHTML) + 1;
+    // const classLi=eventItem.target.parentElement.children[0].classList;
+    // classLi.remove('cantidadZero')
+    // element.parentElement.children[1].innerHTML = parseInt(element.parentElement.children[1].innerHTML) + 1;
 };
 function menosCan(element, cantidad, eventItem) {
     if(cantidad==1){
-        console.log(eventItem.target.classList);
-        const classLi = eventItem.target.classList;
-        classLi.add('cantidadZero')
+        // console.log(eventItem.target.classList);
+        // const classLi = eventItem.target.classList;
+        // classLi.add('cantidadZero')
     };
     if(cantidad!==0) {
-        element.parentElement.children[1].innerHTML = parseInt(element.parentElement.children[1].innerHTML) - 1;
+        // element.parentElement.children[1].innerHTML = parseInt(element.parentElement.children[1].innerHTML) - 1;
     }
 };
 

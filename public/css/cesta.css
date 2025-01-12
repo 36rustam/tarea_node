@@ -1,11 +1,11 @@
-.btn-mas-menos{
+.bek-btn-mas-menos{
     display: inline-block;
     text-align:center;
     width: 2rem;
     height: 2rem;
 }
 /* simvol del botoms */
-.btn-mas-menos>span{
+.bek-btn-mas-menos>span{
     translate:0 -7%;
     z-index: -1;
 }

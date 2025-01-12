@@ -19,8 +19,9 @@ const routCompra=require('./routes/rout_compra.js');
 const routCesta=require('./routes/rout_cesta.js');
 const routTestAxios=require('./routes/rout_test_axios.js');
 const rout404=require('./routes/rout_404.js');
+// api
+const routApiPrecioReal=require('./routes/api/precio_real.js');
 // const { extname } = require('path');
-
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -73,7 +74,6 @@ app.use(
 
 app.use(varSession);
 
-
 // morgan 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
@@ -86,10 +86,10 @@ app.use('/productos', routProductos);
 app.use('/compra',routCompra);
 app.use('/cesta', routCesta);
 app.use('/test_axios', routTestAxios);
+// api
+app.use('/precio_real', routApiPrecioReal);
+
 app.use('*', rout404);
-
-
-
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
