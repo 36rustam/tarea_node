@@ -43,6 +43,21 @@ class Productos{
             );
         });
     };
+    almacen(idProducto){
+        const sql='SELECT almacen FROM productos WHERE id=?;';
+        const datos=[idProducto];
+        return new Promise((resolve, rejects) => {
+            this.connect.execute(
+                sql,
+                datos,
+                (err, result, fields) => {
+                    // console.log(result);
+                    err ? rejects(err) : resolve(result);
+
+                }
+            );
+        });
+    };
 };
 
 

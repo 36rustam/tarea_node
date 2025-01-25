@@ -20,11 +20,14 @@ const routCesta=require('./routes/rout_cesta.js');
 const routTestAxios=require('./routes/rout_test_axios.js');
 const rout404=require('./routes/rout_404.js');
 // api
-const routApiPrecioReal=require('./routes/api/precio_real.js');
+const routApiCesta=require('./routes/api/rout_api_cesta.js');
 // const { extname } = require('path');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+// Para ContentType: aplication/json;
+app.use(express.json());
+
 
 const sessionDb= new MySqlSession({
     host:process.env.HOST,
@@ -50,6 +53,7 @@ app.set('view engine', 'hbs');
 // las carpetas estaticos:
 app.set('views', path.join(__dirname, 'views'));
 app.use('/dist', express.static(path.join(__dirname, 'node_modules', 'bootstrap', 'dist')));
+app.use('/axios', express.static(path.join(__dirname, 'node_modules', 'axios', 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // para elaborar los requisitos post
@@ -75,7 +79,7 @@ app.use(
 app.use(varSession);
 
 // morgan 
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
+// app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
 // routes (con prefix)
 app.use('/', routHome);
@@ -87,7 +91,7 @@ app.use('/compra',routCompra);
 app.use('/cesta', routCesta);
 app.use('/test_axios', routTestAxios);
 // api
-app.use('/precio_real', routApiPrecioReal);
+app.use('/api_cesta', routApiCesta);
 
 app.use('*', rout404);
 

@@ -8,7 +8,7 @@ module.exports= function (req,res,next){
         res.locals.esAdmin=true;
     }
 
-    console.log('locals '+ JSON.stringify(res.locals));
+    // console.log('locals '+ JSON.stringify(res.locals));
 
     next();
 };

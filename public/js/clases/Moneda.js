@@ -1,33 +1,39 @@
 import { Dineral } from "./Dineral.js";
 
 export class Moneda extends Dineral {
-    constructor(rutaPrecioReal, monedaNativa) {
+    constructor(host, monedaNativa) {
         super();
-        this.rutaPrecioReal = rutaPrecioReal;
+        this.host = host;
         this.monedaNativa = monedaNativa;
     };
 
+    // Segun el curso actual del banco de Ucrania;
     async cambiarMoneda(precio, moneda) {
         const id = precio.dataset.id;
-        moneda = moneda.value;
         let precioReal;
-        precioReal = await axios.get(`${this.rutaPrecioReal}/precio_real?id=${id}`).catch(err => {
+        //Espera el precio actual en moneda nativa del DB;
+        precioReal = await axios.get(`${this.host}/api_cesta/precio?id=${id}`).catch(err => {
             console.error(err);
         });
-        precioReal = precioReal.data;
-        if (moneda === this.monedaNativa) {
+        precioReal = precioReal.data.toFixed(2);
+        //Hace cambios;
+        if (moneda.value === this.monedaNativa) {
             return precioReal;
         } else {
-            // let moneda='EUR';
             let precioMoneda;
+            let data = new Date().toLocaleDateString('en-CA').replaceAll('-', '');
+            // Estamos esperando el precio de la moneda en relación al precio de la moneda nativa;
             precioMoneda = await axios.get(`https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange
-            // ?valcode=${moneda}&date=20200302&json`).catch(error => {
-                console.log(error.cause)
+            // ?valcode=${moneda.value}&date=${data}&json`).catch(error => {
+                moneda.value = this.monedaNativa;
+                const monedaCL = moneda.classList;
+                monedaCL.add('bg-danger');
+                throw Error(error)
             });
             precioMoneda = precioMoneda.data[0].rate;
             const result = precioReal / precioMoneda;
             // console.log('cambio' + result);
-            return result.toFixed(2);
+            return (result.toFixed(2));
         };
     };
 };

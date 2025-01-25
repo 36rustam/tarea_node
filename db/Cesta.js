@@ -1,6 +1,4 @@
-const { rejects } = require('assert');
 const mysql = require('mysql2');
-const { resolve } = require('path');
 
 class Cesta {
     constructor() {
@@ -18,7 +16,7 @@ class Cesta {
     // ver todos los productos del cesta
     getCesta(idUsuario) {
         const datos = [idUsuario];
-        const sql = 'SELECT * FROM cestas WHERE usuario=?;';
+        const sql = 'SELECT * FROM cestas WHERE usuario=? ORDER BY producto;';
         return new Promise((resolve, rejects) => {
             this.connect.execute(
                 sql,
@@ -69,6 +67,37 @@ class Cesta {
             );
         });
     };
+    async updateCantidad(cantidad, idUsuario, idProducto){
+        const sql='UPDATE cestas SET cantidad=? WHERE usuario=? AND producto=?';
+        const datos =[cantidad, idUsuario, idProducto];
+        await this.connect.execute(
+            sql,
+            datos,
+            (err,result, fields)=>{
+                if(err){
+                    console.log(err);
+                }else{
+                    return result;
+                };
+            }
+        );
+    };
+    async deleteDelCesta(idProducto, idUsuario){
+        const sql= 'DELETe FROM cestas WHERE producto=? AND usuario=?;';
+        const datos=[idProducto, idUsuario];
+        await this.connect.execute(
+            sql,
+            datos,
+            (err, result, fields)=>{
+                if(err){
+                    throw err;
+                }else{
+                    return result;
+                };
+            }
+        );
+    };
+
 };
 
 module.exports = Cesta;

@@ -26,16 +26,18 @@ export class Dineral {
         ).format(cajaPrecio.textContent);
     };
 
+    // (300,23 грн==>300.23)
     aNumero(element) {
+        // console.log(element.textContent);
         let preparado;
         preparado = element.textContent.replace(/\D/g, '');
         preparado=preparado.slice(0,-2)+'.'+preparado.slice(-2);
+        // console.log(preparado);
         const stringFormatado = parseFloat(preparado).toFixed(2);
-        // console.log(stringFormatado);
         return Number(stringFormatado);
     };
 
     esEmpty(val) {
         return this.esEmpty(val);
     };
-}
+};

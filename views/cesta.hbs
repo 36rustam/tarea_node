@@ -1,8 +1,10 @@
 <div class="container">
-
+        {{!-- la cabezera --}}
         <div class="d-flex justify-content-between">
             <h1>cesta</h1>
             {{#if cesta}}
+            
+                {{!-- la cambia de la moneda --}}
                 <div class="col-xl-2 col-sm-3 align-self-center">
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="bek-moneda">Moneda:</label>
@@ -13,40 +15,81 @@
                         </select>
                     </div>
                 </div>
+
             {{/if}}
         </div>
+
     {{#if cesta}}
-
-
     <div id="cestaContent">
         {{#each cesta}}
-            <div class="row col-xl-8 col-sm-12 d-flex bek-cesta-unidad mx-auto align-items-center border-bottom border-2 border-dark pb-2 pt-3 justify-content-center">
-                <img src="{{{producto.ruta_img}}}" alt="{{{nombre}}}" class="col-2">
-                <div class="col-3">{{{producto.nombre}}}</div>
+            <div class="bek-caparazon-cesta-item position-relative z-0">
 
-
-                <div class="col-2 d-flex align-items-center" id="cantidad{{{id}}}">
-                    <span class="bek-btn-mas-menos border border-2 rounded-circle border-danger fs-3 d-flex align-items-center justify-content-center bek-menos" data-but="menos">
-                        <span>
-                            -
-                        </span>
-                    </span>
-                    <span class="bek-cantidad">
-                        {{{cantidad}}}
-                    </span>un.
-                    <span class="bek-btn-mas-menos border border-2 rounded-circle border-success fs-3 d-flex align-items-center justify-content-center bek-mas" data-but="mas">
-                        <span>
-                            +
-                        </span>
-                    </span>
+                {{!-- este mensaje dise que el producto no es disponible --}}
+                <div class="bek-indisponible position-absolute top-50 start-50 translate-middle text-center fs-3
+                 text-warning  d-none bg-dark col-6 opacity-75 rounded-2">
+                    está agotado
                 </div>
-                
-                <div class="col-2" id="precio{{{id}}}">por:<span class="card-precio bek-precio" data-id="{{{producto.id}}}">{{{producto.precio}}}</span></div>
-                <div class="col-2">total:<span class="bek-sub-total card-precio" id="sub_total_{{id}}"></span></div>
-            </div>
-        {{/each}}
-    </div>
 
+                <div class="row col-xl-8 col-sm-12 d-flex bek-cesta-unidad mx-auto align-items-center border-bottom
+                 border-2 border-dark pb-2 pt-3 justify-content-center position-relative">
+                    {{!-- el aviso que tenemos menos que el cliente desea --}}
+                    <div class="bek-aviso-cantidad d-none position-absolute top-0 text-center text-danger">
+                        sabemos que querrias más, pero no tenemos bastante
+                    </div>
+                    {{!-- borrar del cesta --}}
+                    <button type="button" class="btn-close position-absolute top-0 end-0 z-2 opacity-100 bek-borrar-del-cesta"
+                     aria-label="Close" data-id="{{{producto.id}}}"></button>
+                    
+                    {{!-- la caja del escaparate --}}
+                    <div class="col-xl-5 col-sm-12 d-flex align-items-center">
+                    
+                        <img src="{{{producto.ruta_img}}}" alt="{{{nombre}}}" class="col-5">
+
+                        <div class="col-7">{{{producto.nombre}}}</div>
+                        
+                    </div>
+
+                    {{!-- la caja de la calculacion --}}
+                    <div class="col-sm-12 col-xl-7 d-flex align-items-center">
+
+                        {{!-- cantidad --}}
+                        <div class="col-4 d-flex align-items-center" id="cantidad{{{id}}}">
+                            
+                            <span class="bek-btn-mas-menos border border-2 rounded-circle border-danger 
+                            fs-3 d-flex align-items-center justify-content-center bek-menos" data-but="menos">
+                                <span>
+                                    -
+                                </span>
+                            </span>
+
+                            <span class="bek-cantidad" data-id="{{{producto.id}}}">
+                                {{{cantidad}}}
+                            </span>un.
+
+                            <span class="bek-btn-mas-menos border border-2 rounded-circle border-success fs-3 d-flex align-items-center justify-content-center bek-mas" data-but="mas">
+                                <span>
+                                    +
+                                </span>
+                            </span>
+
+                        </div>
+                        {{!-- precio --}}
+                        <div class="col-4" id="precio{{{id}}}">
+                            por:<span class="card-precio bek-precio" data-id="{{{producto.id}}}">
+                                {{{producto.precio}}}
+                                </span>
+                        </div>
+                        {{!-- subtotal (cantidad*precio) --}}
+                        <div class="col-4">total:<span class="bek-sub-total card-precio" id="sub_total_{{id}}"></span></div>
+                    </div>{{!-- /la caja de la calculacion --}}
+
+                </div>{{!--/row del cesta--}}
+
+            </div>{{!--/.bek-caparazon-cesta-item--}}
+        {{/each}}
+    </div>{{!--/#cestaContent--}}
+
+    {{!-- al pagar --}}
     <div class="text-end col-xl-6 col-sm-11 mx-auto">
         total:<span class="bek-total-cesta card-precio"></span>
     </div>
